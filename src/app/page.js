@@ -1,95 +1,70 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+"use client";
+import { useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { Flex, Text, Button, Box } from "@chakra-ui/react";
+// import "./App.css";
 
-export default function Home() {
+const Banner = ({
+  purpose,
+  imageUrl,
+  title1,
+  title2,
+  desc1,
+  desc2,
+  linkName,
+  buttonText,
+}) => (
+  <Flex flexWrap="wrap" justifyContent="center" alignItems="center" m="10">
+    <Image src={imageUrl} width={500} height={300} alt="banner" />
+    <Box p="5">
+      <Text color="gray.500" fontSize="sm" fontWeight="medium">
+        {purpose}
+      </Text>
+      <Text fontSize="3xl" fontWeight="bold">
+        {title1}
+        <br />
+        {title2}
+      </Text>
+      <Text fontSize="lg" paddingTop="3" paddingBottom="3">
+        {desc1} <br />
+        {desc2}
+      </Text>
+      <Button fontSize="xl">
+        <Link href={linkName}>{buttonText}</Link>
+      </Button>
+    </Box>
+  </Flex>
+);
+
+function App() {
+  const [count, setCount] = useState(0);
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+    <>
+      <h1>hi</h1>
+      <Banner
+        purpose="Rent a Home"
+        title1="Rental Homes For"
+        title2="Everyone"
+        desc1="Explore Apartments, Villas, Homes"
+        desc2="And More"
+        buttonText="Explore Renting"
+        linkName="/search?purpose=for-rent"
+        imageUrl="https://bayut-production.s3.eu-central-1.amazonaws.com/image/145426814/33973352624c48628e41f2ec460faba4"
+      />
+      <Banner
+        purpose="Buy a Home"
+        title1="Find, Buy, and Own Your"
+        title2="Dream Home"
+        desc1="Explore Apartments, Villas, Homes"
+        desc2="And More"
+        buttonText="Explore Buying"
+        linkName="/search?purpose=for-sale"
+        imageUrl="https://bayut-production.s3.eu-central-1.amazonaws.com/image/145426814/33973352624c48628e41f2ec460faba4"
+      />
+    </>
+  );
 }
+
+export default App;
