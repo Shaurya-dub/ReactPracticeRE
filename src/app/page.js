@@ -3,6 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Flex, Text, Button, Box } from "@chakra-ui/react";
+import { baseUrl,fetchApi } from "../../utils/fetchApi";
 // import "./App.css";
 
 const Banner = ({
@@ -37,7 +38,8 @@ const Banner = ({
   </Flex>
 );
 
-function App() {
+function App({propertyForSale,propertyForRent}) {
+  console.log(propertyForRent,propertyForSale)
   const [count, setCount] = useState(0);
 
   return (
@@ -67,4 +69,13 @@ function App() {
   );
 }
 
+
 export default App;
+export async function getStaticProps() {
+  const propertyForSale = await fetchApi(`${baseUrl}/properties/list?locationExternalIDs=5002&purpose=for-sale&hitsPerPage=6`)
+  const propertyForRent = await fetchApi(`${baseUrl}/properties/list?locationExternalIDs=5002&purpose=for-rent&hitsPerPage=6`)
+  return {
+    propertyForSale:propertyForSale,
+    propertyForRent:propertyForRent
+    }
+}
