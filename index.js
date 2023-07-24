@@ -3,7 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Flex, Text, Button, Box } from "@chakra-ui/react";
-import { baseUrl, fetchApi, usePropertyData } from "../../utils/fetchApi";
+import { baseUrl, fetchApi } from "../../utils/fetchApi";
 // import "./App.css";
 
 const Banner = ({
@@ -37,13 +37,10 @@ const Banner = ({
     </Box>
   </Flex>
 );
-// await getStaticProps()
 
-function App() {
-//  getStaticProps()
-const [count, setCount] = useState(0);
-const { propertyForSale, propertyForRent } = usePropertyData();
-console.log(propertyForRent, propertyForSale);
+function App({ propertyForSale, propertyForRent }) {
+  console.log(propertyForRent, propertyForSale);
+  const [count, setCount] = useState(0);
 
   return (
     <>
@@ -72,16 +69,16 @@ console.log(propertyForRent, propertyForSale);
   );
 }
 
-// export async function getServerSideProps() {
-//   const propertyForSale = await fetchApi(
-//     `${baseUrl}/properties/list?locationExternalIDs=5002&purpose=for-sale&hitsPerPage=6`
-//   );
-//   const propertyForRent = await fetchApi(
-//     `${baseUrl}/properties/list?locationExternalIDs=5002&purpose=for-rent&hitsPerPage=6`
-//   );
-//   return {
-//     propertyForSale: propertyForSale,
-//     propertyForRent: propertyForRent,
-//   };
-// }
 export default App;
+export async function getStaticProps() {
+  const propertyForSale = await fetchApi(
+    `${baseUrl}/properties/list?locationExternalIDs=5002&purpose=for-sale&hitsPerPage=6`
+  );
+  const propertyForRent = await fetchApi(
+    `${baseUrl}/properties/list?locationExternalIDs=5002&purpose=for-rent&hitsPerPage=6`
+  );
+  return {
+    propertyForSale: propertyForSale,
+    propertyForRent: propertyForRent,
+  };
+}
