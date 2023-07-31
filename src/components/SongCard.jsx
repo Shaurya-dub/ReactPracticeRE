@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import PlayPause from "./PlayPause";
-import { playPause, setActiveSong } from "../redux/features/playerSlice";
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import PlayPause from './PlayPause';
+import { playPause, setActiveSong } from '../redux/features/playerSlice';
 
 const SongCard = ({ song, isPlaying, activeSong, data, i }) => {
   const dispatch = useDispatch();
@@ -18,8 +18,8 @@ const SongCard = ({ song, isPlaying, activeSong, data, i }) => {
         <div
           className={`absolute inset-0 justify-center items-center bg-black bg-opacity-50 group-hover:flex ${
             activeSong?.title === song.title
-              ? "flex bg-black bg-opacity-70"
-              : "hidden"
+              ? 'flex bg-black bg-opacity-70'
+              : 'hidden'
           }`}
         >
           <PlayPause
