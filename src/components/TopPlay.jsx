@@ -10,6 +10,12 @@ import { useGetTopChartsQuery } from '../redux/services/shazamCore';
 import 'swiper/css';
 import 'swiper/css/free-mode';
 
+const TopChartCard = ({ song, i }) => (
+  <div className="w-full flex flex-row items-center hover:bg-[#4c426e] py-2 p-4 rounded-lg cursor-pointer mb-2 ">
+    {song.title}
+  </div>
+);
+
 const TopPlay = () => {
   const dispatch = useDispatch();
   const { activeSong, isPlaying } = useSelector((state) => state.player);
@@ -37,8 +43,13 @@ const TopPlay = () => {
         <div className="flex flex-row justify-between items-center">
           <h2 className="text-white font-bold text-2xl">Top Charts</h2>
           <Link to="/top-charts">
-            <p>See more</p>
+            <p className="text-gray-300 text-base cursor-pointer">See more</p>
           </Link>
+          <div className="mt-4 flex flex-col gap-1">
+            {topPlays?.map((song, i) => (
+              <TopChartCard key={song.key} song={song} i={i} />
+            ))}
+          </div>
         </div>
       </div>
     </div>
