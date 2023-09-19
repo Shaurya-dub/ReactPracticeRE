@@ -9,22 +9,24 @@ const SongDetails = () => {
   const { activeSong, isPlaying } = useSelector((state) => state.player);
   const { data: songData, isFetching: isFetchingSongDetails } =
     useGetSongDetailsQuery({ songid });
-  console.log('songid', songid);
+  console.log('songid', songid, songData);
   return (
     <div className="flex flex-col">
-      <DetailsHeader artistId={artistId} songData={songData} />
+      <DetailsHeader artistId="" songData={songData} />
       <div className="mb-10">
-        <h2 className="text-white text-3xl font-bold">Lyrics:</h2>
+        <h2 className="text-white text-3xl font-bold">Details:</h2>
         <div className="mt-5">
-          {songData?.selections[1].type === 'LYRICS' ? (
-            songData?.sections[1].text.map((line, i) => (
-              <p className="text-gray-400 text-base my-1">{line}</p>
+          {/* {songData?.sections[0].metadata ? (
+            songData?.sections[0].metadata.map((det) => (
+              <p className="text-gray-400 text-base my-1">
+                {det.title} : {det.text}
+              </p>
             ))
           ) : (
-            <p className="text-gray-400 text-base m-1">
-              Sorry, no lyrics found...
+            <p className="text-gray-400 text-base my-1">
+              Details unavailable...
             </p>
-          )}
+          )} */}
         </div>
       </div>
     </div>
