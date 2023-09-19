@@ -9,7 +9,7 @@ import { useGetTopChartsQuery } from '../redux/services/shazamCore';
 
 import 'swiper/css';
 import 'swiper/css/free-mode';
-
+// console.log('song Det', song);
 const TopChartCard = ({
   song,
   i,
@@ -30,7 +30,7 @@ const TopChartCard = ({
         <Link to={`/songs/${song.key}`}>
           <p className="text-xl font-bold text-white">{song?.title}</p>
         </Link>
-        <Link to={`/songs/${song?.artists[0].adamid}`}>
+        <Link to={`/artists/${song?.artists[0].adamid}`}>
           <p className="text-base mt-1 text-gray-300">{song?.subtitle}</p>
         </Link>
       </div>
@@ -54,6 +54,7 @@ const TopPlay = () => {
     divRef.current.scrollIntoView({ behavior: 'smooth' });
   });
   const topPlays = data?.tracks.slice(0, 5);
+  console.log('top', topPlays);
 
   const handlePauseClick = () => {
     dispatch(playPause(false));
